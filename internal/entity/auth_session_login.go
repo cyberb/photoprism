@@ -54,6 +54,9 @@ func CreateUser(username string, isAdmin bool) (*User, error) {
 	user.UserName = username
 	user.SuperAdmin = isAdmin
 	user.CanLogin = true
+	if !isAdmin {
+		user.UserRole = os.Getenv("PHOTOPRISM_LDAP_DEFAULT_USER_ROLE")
+	}
 	err := Db().Transaction(func(tx *gorm.DB) error {
 		if err := tx.Create(user).Error; err != nil {
 			return err
