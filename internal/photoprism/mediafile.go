@@ -751,6 +751,7 @@ func (m *MediaFile) IsHEIC() bool {
 
 	// Check the mime type after other tests have passed to improve performance.
 	mimeType := m.MimeType()
+	log.Tracef("MimeType: %s", mimeType)
 	return mimeType == fs.MimeTypeHEIC || mimeType == fs.MimeTypeHEICS
 }
 

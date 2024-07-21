@@ -116,8 +116,10 @@ func (c *Config) DisableImageMagick() bool {
 // DisableHeifConvert checks if heif-convert is disabled for HEIF conversion.
 func (c *Config) DisableHeifConvert() bool {
 	if c.options.DisableHeifConvert {
+		log.Tracef("DisableHeifConvert: %v", true)
 		return true
 	} else if c.HeifConvertBin() == "" {
+		log.Tracef("HeifConvertBin: %s", c.HeifConvertBin())
 		c.options.DisableHeifConvert = true
 	}
 
